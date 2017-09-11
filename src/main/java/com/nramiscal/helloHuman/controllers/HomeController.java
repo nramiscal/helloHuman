@@ -9,11 +9,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class HomeController {
 
 	@RequestMapping("/")
-    public String index(@RequestParam(value="name", required=false) String searchQuery, Model model) {
-		if (searchQuery == null) {
-			searchQuery = "Human";
-		}
-		model.addAttribute("name", searchQuery);
+    public String index(@RequestParam(defaultValue="Human", value="name", required=false) String fName, @RequestParam(defaultValue="", value="last_name", required=false) String lName, Model model) {
+//		if (searchQuery == null) {
+//			searchQuery = "Human";
+//		}
+		model.addAttribute("name", fName);
+		model.addAttribute("lName", lName);
 		
 		return "index";
     }
